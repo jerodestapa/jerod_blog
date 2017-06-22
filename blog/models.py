@@ -1,11 +1,12 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.db import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalKey
 
 from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField, Paginator, EmptyPage, PageNotAnInteger
+from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
@@ -107,7 +108,6 @@ class BlogIndexPage(Page):
     content_panels = [
         FieldPanel('title', classname="full title"),
         FieldPanel('intro', classname="full"),
-        InlinePanel('related_links', label="Related links"),
     ]
 
     promote_panels = Page.promote_panels
